@@ -94,8 +94,7 @@ class AuthenticationBloc
       _navigationService.resetTo(AppRouter.Search);
     } catch (err) {
       print(err);
-            _navigationService.resetTo(AppRouter.Search);
-      //_navigationService.resetTo(AppRouter.First);
+      _navigationService.resetTo(AppRouter.First);
     }
   }
 

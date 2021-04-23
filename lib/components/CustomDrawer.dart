@@ -71,26 +71,26 @@ class CustomDrawer extends StatelessWidget {
                             .caption
                             .apply(color: Colors.white)),
                   ))),
-          // Material(
-          //     color: Colors.white.withOpacity(0.0),
-          //     child: InkWell(
-          //         onTap: () {
-          //           BlocProvider.of<ContentBloc>(context)
-          //               .add(HistoryRouteEvent());
-          //           drawerKey.currentState.openEndDrawer();
-          //         },
-          //         child: Padding(
-          //           padding: EdgeInsets.only(
-          //             top: verticalScale(context, 10),
-          //             bottom: verticalScale(context, 10),
-          //             left: scale(context, 60.0),
-          //           ),
-          //           child: Text(S.of(context).History,
-          //               style: Theme.of(context)
-          //                   .textTheme
-          //                   .caption
-          //                   .apply(color: Colors.white)),
-          //         ))),
+          Material(
+              color: Colors.white.withOpacity(0.0),
+              child: InkWell(
+                  onTap: () {
+                    BlocProvider.of<ContentBloc>(context)
+                        .add(HistoryRouteEvent());
+                    drawerKey.currentState.openEndDrawer();
+                  },
+                  child: Padding(
+                    padding: EdgeInsets.only(
+                      top: verticalScale(context, 10),
+                      bottom: verticalScale(context, 10),
+                      left: scale(context, 60.0),
+                    ),
+                    child: Text(S.of(context).History,
+                        style: Theme.of(context)
+                            .textTheme
+                            .caption
+                            .apply(color: Colors.white)),
+                  ))),
           Material(
               color: Colors.white.withOpacity(0.0),
               child: InkWell(
@@ -148,30 +148,30 @@ class CustomDrawer extends StatelessWidget {
                             .caption
                             .apply(color: Colors.white, heightFactor: 0.6)),
                   ))),
-          // Padding(
-          //     padding: EdgeInsets.only(top: verticalScale(context, 114)),
-          //     child: Material(
-          //         color: Colors.white.withOpacity(0.0),
-          //         child: Material(
-          //             color: Colors.white.withOpacity(0.0),
-          //             child: InkWell(
-          //                 onTap: () {
-          //                   BlocProvider.of<AuthenticationBloc>(context)
-          //                       .add(AuthenticationLogOutEvent());
-          //                   drawerKey.currentState.openEndDrawer();
-          //                 },
-          //                 child: Padding(
-          //                   padding: EdgeInsets.only(
-          //                     top: verticalScale(context, 10),
-          //                     bottom: verticalScale(context, 10),
-          //                     left: scale(context, 60.0),
-          //                   ),
-          //                   child: Text(S.of(context).Exit,
-          //                       style: Theme.of(context)
-          //                           .textTheme
-          //                           .caption
-          //                           .apply(color: Colors.white)),
-          //                 ))))),
+          Padding(
+              padding: EdgeInsets.only(top: verticalScale(context, 114)),
+              child: Material(
+                  color: Colors.white.withOpacity(0.0),
+                  child: Material(
+                      color: Colors.white.withOpacity(0.0),
+                      child: InkWell(
+                          onTap: () {
+                            BlocProvider.of<AuthenticationBloc>(context)
+                                .add(AuthenticationLogOutEvent());
+                            drawerKey.currentState.openEndDrawer();
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                              top: verticalScale(context, 10),
+                              bottom: verticalScale(context, 10),
+                              left: scale(context, 60.0),
+                            ),
+                            child: Text(S.of(context).Exit,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .caption
+                                    .apply(color: Colors.white)),
+                          ))))),
         ],
       ),
     ));

@@ -63,8 +63,8 @@ class _PaymentScreenState extends State<PaymentScreen> {
       //     .showSnackBar(SnackBar(content: Text(responseData["status"])));
       responseData = null;
     }
-    final publicKey = "i17818302354";
-    final privateKey = "XJBUFxCnspp1swZk8wOGGgfhEITn9eHfLzBJlqfP";
+    final publicKey = "sandbox_i40637018930";
+    final privateKey = "sandbox_c5VQosgvbfdTn336TvYkNYPk2cckA9x1je8bS6Sw";
     final orderId = Uuid().v1();
     double _amount;
     if (widget.order["services"] != null) {

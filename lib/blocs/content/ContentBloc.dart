@@ -193,12 +193,14 @@ class ContentBloc extends Bloc<ContentEvent, ContentState> {
   Stream<ContentState> mapCheckOrderStatusToState(
       Burial burial, String orderId) async* {
     try {
+      yield ContentLoadingState();
       orderGrpc.NewOrderResponse response =
           await contentGrpcRepository.getNewOrder(orderId);
       if (response.order.paymentId != "") {
         _navigationService.replaceWith(AppRouter.OrderSuccess,
             arguments: {"burial": burial, "order": response.order});
       }
+      yield ContentWithoutErrorState();
     } catch (err) {
       print(err);
       yield ContentErrorState(code: "error", message: err.message);

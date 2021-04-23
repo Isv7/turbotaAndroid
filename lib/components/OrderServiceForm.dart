@@ -106,6 +106,7 @@ class _OrderServiceFormState extends State<OrderServiceForm> {
         }
       }
     } else {
+	   if (BlocProvider.of<AuthenticationBloc>(context).name != null) {
       final fullname =
           BlocProvider.of<AuthenticationBloc>(context).name.split(" ");
       _orderData.name = fullname[0];
@@ -114,6 +115,7 @@ class _OrderServiceFormState extends State<OrderServiceForm> {
         _orderData.surname = fullname[1];
         touched["surname"] = true;
       }
+	  }
       _orderData.phone = BlocProvider.of<AuthenticationBloc>(context).phone;
       phoneController.text = _orderData.phone;
       touched["phone"] = true;

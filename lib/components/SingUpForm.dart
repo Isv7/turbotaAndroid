@@ -80,7 +80,7 @@ class _SingUpFormState extends State<SingUpForm> {
   }
 
   checkSubmit() {
-    if (touched["phone"] && touched["password"]) {
+    if (touched["name"] && touched["phone"] && touched["password"]) {
       if (_formKey.currentState.validate()) {
         this.setState(() {
           _sumbitEnable = true;
@@ -106,56 +106,62 @@ class _SingUpFormState extends State<SingUpForm> {
                       top: verticalScale(context, 0),
                       left: scale(context, 48.0),
                       right: scale(context, 48.0)),
-                  child: state is AuthenticationLoginErrorState
+                  child: state is AuthenticationRegisterErrorState
                       ? Errors(errors: state.message)
                       : Container()),
 
               /////////////  Name //////////////
-              // Padding(
-              //     padding: EdgeInsets.only(
-              //         top: verticalScale(context, 17.0),
-              //         left: scale(context, 48.0),
-              //         right: scale(context, 48.0)),
-              //     child: FormTemplate(
-              //         label: S.of(context).Name,
-              //         form: TextFormField(
-              //           onTap: () {
-              //             setState(() {
-              //               touched["name"] = true;
-              //             });
-              //             checkSubmit();
-              //           },
-              //           onSaved: (String inValue) {
-              //             this._registerData.name = inValue;
-              //           },
-              //           style: Theme.of(context).textTheme.bodyText2,
-              //           cursorColor: Config().mainColor(1),
-              //           decoration: InputDecoration(
-              //             hintText: 'Імя',
-              //             hintStyle: Theme.of(context)
-              //                 .textTheme
-              //                 .bodyText2
-              //                 .apply(color: Color(0xFFBBBBBB)),
-              //             isDense: true,
-              //             contentPadding: EdgeInsets.only(
-              //               left: scale(context, 9),
-              //               right: scale(context, 9),
-              //               top: verticalScale(context, 10),
-              //               bottom: verticalScale(context, 10),
-              //             ),
-              //             border: InputBorder.none,
-              //             errorBorder: OutlineInputBorder(
-              //               borderSide: BorderSide(color: Colors.red),
-              //             ),
-              //             errorStyle: TextStyle(
-              //               height: 0.5,
-              //               color: Colors.red,
-              //               fontSize: 10,
-              //             ),
-              //             filled: true,
-              //             fillColor: Colors.white,
-              //           ),
-              //         ))),
+              Padding(
+                  padding: EdgeInsets.only(
+                      top: verticalScale(context, 17.0),
+                      left: scale(context, 48.0),
+                      right: scale(context, 48.0)),
+                  child: FormTemplate(
+                      label: S.of(context).Name,
+                      form: TextFormField(
+                        onTap: () {
+                          setState(() {
+                            touched["name"] = true;
+                          });
+                          checkSubmit();
+                        },
+                        onSaved: (String inValue) {
+                          this._registerData.name = inValue;
+                        },
+                        style: Theme.of(context).textTheme.bodyText2,
+                        cursorColor: Config().mainColor(1),
+                        decoration: InputDecoration(
+                          hintText: 'Імя',
+                          hintStyle: Theme.of(context)
+                              .textTheme
+                              .bodyText2
+                              .apply(color: Color(0xFFBBBBBB)),
+                          isDense: true,
+                          contentPadding: EdgeInsets.only(
+                            left: scale(context, 9),
+                            right: scale(context, 9),
+                            top: verticalScale(context, 10),
+                            bottom: verticalScale(context, 10),
+                          ),
+                          border: InputBorder.none,
+                          errorBorder: OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
+                          ),
+                          errorStyle: TextStyle(
+                            height: 0.5,
+                            color: Colors.red,
+                            fontSize: 10,
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                        ),
+                        validator: (String inValue) {
+                          if (inValue == null || inValue.length == 0) {
+                            return S.of(context).FieldIsRequired;
+                          }
+                          return null;
+                        },
+                      ))),
 
               /////////////  Phone //////////////
               Padding(

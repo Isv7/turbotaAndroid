@@ -42,20 +42,18 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Widget build(BuildContext context) {
     final publicKey = "i21806530811";
     final privateKey = "UW86pfjQaYrFYzKVI7Ho3tWn1BARo4F7FJwFfjWp";
-    final publicSecondKey = "i21806530811";
 
     final orderId = Uuid().v1();
-    double _amount = 0;
-    double _commission = 0;
+    double _amount;
     String _phone = widget.order["phone"].replaceAll(' ', '').length > 13
         ? widget.order["phone"].replaceAll(' ', '').substring(0, 13)
         : widget.order["phone"].replaceAll(' ', '');
     String _orderDescription = "";
     if (widget.order["services"] != null) {
-      _amount =
-          widget.order["services"].fold(0, (curr, next) => curr + next.price);
-      _commission = widget.order["services"]
-          .fold(0, (curr, next) => curr + (next.price * next.commission) / 100);
+      _amount = widget.order["services"].fold(
+          0,
+          (curr, next) =>
+              curr + next.price + (next.price * next.commission) / 100);
       for (final service in widget.order["services"]) {
         _servicesIds.add(service.id);
         _ordered.add(service.title);
@@ -79,30 +77,30 @@ class _PaymentScreenState extends State<PaymentScreen> {
       ${S.of(context).Comment + ": " + widget.order["comment"]}
     """;
 
-    var liqData = {
+    final liqData = {
       "version": 3,
       "public_key": publicKey,
       "action": "pay",
-      "amount": _amount + _commission,
+      "amount": _amount,
       "currency": "UAH",
       "server_url": Config.ServerLiqpayCallback,
       "description": _orderDescription,
       "order_id": orderId,
+      // "split_rules": [
+      //   {
+      //     "public_key": "i000000001",
+      //     "amount": 1,
+      //     "commission_payer": "sender",
+      //     "server_url": "https://server1/callback"
+      //   },
+      //   {
+      //     "public_key": "i000000002",
+      //     "amount": 2,
+      //     "commission_payer": "receiver",
+      //     "server_url": "https://server2/callback"
+      //   }
+      // ]
     };
-    if (this.widget.burial.user.liqpayKey != "") {
-      liqData["split_rules"] = [
-        {
-          "public_key": publicSecondKey,
-          "amount": _commission,
-          "commission_payer": "receiver",
-        },
-        {
-          "public_key": this.widget.burial.user.liqpayKey,
-          "amount": _amount,
-          "commission_payer": "receiver",
-        },
-      ];
-    }
 
     var bytes = utf8.encode(jsonEncode(liqData));
     var base64Str = base64.encode(bytes);
@@ -156,7 +154,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                 phone: _phone,
                 email: widget.order["email"],
                 comment: widget.order["comment"],
-                amount: _amount + _commission,
+                amount: _amount,
                 orderId: orderId,
                 paymentId: ""));
             _timer = new Timer.periodic(Duration(seconds: 2), (Timer timer) {

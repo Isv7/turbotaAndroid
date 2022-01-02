@@ -284,13 +284,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_wayforpay_package:
-    dependency: "direct dev"
-    description:
-      path: flutter_wayforpay_package
-      relative: true
-    source: path
-    version: "0.0.2"
   flutter_web_plugins:
     dependency: transitive
     description: flutter
@@ -415,13 +408,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0"
-  mask_text_input_formatter:
-    dependency: transitive
-    description:
-      name: mask_text_input_formatter
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.1"
   matcher:
     dependency: transitive
     description:

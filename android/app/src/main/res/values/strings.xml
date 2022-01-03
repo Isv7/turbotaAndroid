@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">Turbota</string>
+    <string name="facebook_app_id">968932480665571</string>
+    <string name="fb_login_protocol_scheme">968932480665571</string>
+</resources>

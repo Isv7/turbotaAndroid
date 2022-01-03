@@ -47,6 +47,7 @@ dev_dependencies:
   firebase_auth: ^0.18.1+2
   google_sign_in: ^4.5.4
   sign_in_with_apple: ^2.5.2
+  flutter_facebook_auth: ^2.0.2+1
   crypto: ^2.1.5
   shared_preferences: ^0.5.12
   google_maps_flutter: ^0.5.28+1
